@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>网页布局问题答案2</title>
+ <style>
+        .outer{
+            width: 600px;
+            background-color: #ccc;
+}
+.outer div{
+    width: 178px;
+    height: 100px;
+    background-color: orange;
+    margin: 10px;
+    border: 1px solid red;     /*margin,border不能缩小，所以造成缩小布局时布局错乱*/
+    float: left
+}
+.outer div.two{
+    margin: 10px 0px 10px 10px;
+}
+.outer div.three{
+    float: right;
+    margin: 10px 10px 10px 0px;
+}</style>
+</head>
+<body>
+    <div class="outer">
+        <div class="one"></div>
+        <div class="two"></div>
+        <div class="three"></div>
+    </div>
+    <div></div>
+    <div></div>
+</body>
+</html>

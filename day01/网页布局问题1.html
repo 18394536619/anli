@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>网页缩小改变布局问题答案1</title>
+    <style>
+        .outer{
+            width: 600px;
+            background-color: #ccc;
+}
+.outer div{
+    width: 178px;
+    height: 100px;
+    background-color: orange;
+    /*margin: 10px;
+    border: 1px solid red;     margin,border不能缩小，所以造成缩小布局时布局错乱*/
+    float: left
+    
+}
+.outer div.two{
+    background-color: blue;
+    margin-left: 10px;
+}
+.outer div.three{
+    width: 200px;
+        background-color: green;
+        margin-left: 10px;
+}</style>
+</head>
+<body>
+    <div class="outer">
+        <div class="one"></div>
+        <div class="two"></div>
+        <div class="three"></div>
+    </div>
+    <div></div>
+    <div></div>
+</body>
+</html>

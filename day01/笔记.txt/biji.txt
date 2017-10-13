@@ -1,0 +1,15 @@
+border:边框
+border-color
+border-width: thin medium thick px em
+border style:设置边框的样式 solid dashed dotted double groove/ridge outset/inset
+ border-radius:圆角边框的设置
+ border-image:
+ border-image-source:url()
+border-image-slice 切割图片
+border-image-repeat 边框重复效果 
+table表格的属性  table-layout:auto fixed
+border-collpase: separate collpase
+box-shodow:inside outside
+-x方向-y方向-blur阴影模糊距离 -颜色
+display:inline-block:兼具行内和块级特性
+img-属于inline-block属性
