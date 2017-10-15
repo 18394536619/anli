@@ -1,0 +1,102 @@
+<div class='content' page='1'>
+	<h2>题目管理</h2>
+	<hr></hr>
+	<ul id='qManager'>
+		<li id='add1' u='false' class='skip'>添加题目</li>
+		<li id='delete1'>删除题目</li>
+		<li id='update1' u='false' class='skip'>修改题目</li>
+	</ul>
+	<ul class='clear'></ul>
+	<hr></hr>
+	<div id='qManager2'>
+		<table id='table1' class='table1' cellspacing="0">
+			<tr>
+				<th>id</th>
+				<th>题型</th>
+				<th>方向</th>
+				<th>知识点</th>
+				<th>难度</th>
+				<th>题干</th>
+				<th>选项</th>
+				<th>答案</th>
+				<th>分值</th>
+				<th>上传者</th>
+				<th>上传时间</th>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+//获取所有数据：
+	$.getJSON(bashpath+'/questions',function(data){
+		data.forEach(function(item){
+			var tr = '<tr>'
+			+'<td><input type="checkbox" value="'+item.id+'"></td>'
+			+'<td>'+item.type+'</td>'
+			+'<td>'+item.department+'</td>'
+			+'<td>'+item.point+'</td>'
+			+'<td>'+item.difficult+'</td>'
+			+'<td>'+item.stem+'</td>'
+			+'<td>'+item.option2+'</td>'
+			+'<td>'+item.answer+'</td>'
+			+'<td>'+item.value2+'</td>'
+			+'<td>'+item.super2+'</td>'
+			+'<td>'+item.time2+'</td>'
+			+'</tr>';
+			$('#table1').append(tr);
+		});
+	//批量删除：
+		$('#delete1').on('click',function(){
+			var check = $('#table1 input[type="checkbox"]:checked');
+			var arr = [];
+			var a = arr.slice.call(check,0);
+			if(a.length == 0){
+				alert('请先选择您所要删除的数据！');
+			}else{
+				if(confirm("确定要删除选中的数据吗？")){
+					a.forEach(function(item){
+						id = item.value;
+						$.getJSON(bashpath+'/questions/deleteById?id='+id,function(){});
+					});
+					setTimeout(function(){
+						$('section #content').load('router/question.html');
+					},20);
+				}
+			}
+		});
+	//给增加和修改按钮绑定事件：
+		$('#qManager li.skip').on('click',function(){
+			$('#add1').attr('u',false);//先全部清为false;
+			$('#update1').attr('u',false);
+		//点击哪个，将哪个的u改为true，而另一个则是false。用于跳转页面后进行判断是通过增加按钮还是修改按钮：
+			var p = $(this).attr('u');//'false';
+			var b = !p; 			  //false;
+			$(this).attr('u',!b);
+		//单个修改第(1)部分：
+			$('#update1').removeAttr('v');  //清除原来的属性v.
+			var p1 = $('#add1').attr('u');
+			var p2 = $('#update1').attr('u');
+			if(p2 == 'true'){  //点击的是修改按钮，将修改数据：
+				var check = $('#table1 input[type="checkbox"]:checked');
+				var arr = [];
+				var a = arr.slice.call(check,0);
+				if(a.length == 0){
+					alert('请先选择您所要修改的数据！');
+				}else if(a.length > 1){
+					alert('请只选择一条数据！');
+				}else if(a.length == 1){
+					a.forEach(function(item){  //虽然只有一条，但也需要遍历，才能拿到dom元素。
+						id = item.value;
+						$('#update1').attr('v',id);
+					});
+					$('#qManager2').load('page/add_update.html');
+				}
+			}else if(p1 == 'true'){//if是增加。
+				$('#qManager2').load('page/add_update.html');
+			}
+		});
+	});
+
+</script>

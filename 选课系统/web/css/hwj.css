@@ -1,0 +1,27 @@
+*{
+	margin:0;
+	padding:0;
+}
+body{
+	width:1210px;
+	margin:0 auto;
+	background:url('../images/bg.png') no-repeat;
+	background-size:cover;
+}
+.inblo{
+	display:inline-block;
+}
+a{
+	color:black;
+	text-decoration:none;
+}
+.clear{
+	clear:both;
+}
+ul li{
+	list-style-type:none;  /* 去掉小黑点 */
+}
+hr{
+	margin-top:10px;
+	margin-bottom:10px;
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>学生考试系统</title>
+	<link rel="stylesheet" type="text/css" href="css/hwj.css">
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<script type="text/javascript" src='js/jquery-3.2.1.min.js'></script>
+	<script type="text/javascript" src='js/hwj.js'></script>
+	
+</head>
+<body>
+<div id='content'>
+	<header>
+		<img src="images/tk_logo.png" alt="" class='img1'>
+		<div class='inblo div1'>
+			<span id='login'>登录</span>
+			<b>|</b>
+			<span id='register'>注册</span>
+		</div>
+		<div class='clear'></div>
+	</header>
+	<article></article>
+	<footer></footer>
+</div>
+<div id='modal'>
+	<aside class='divCenter'>
+		<div class='divFont'>
+			<p><span>用户名：</span><input type="text" id='loginIndex'></p>
+			<p><span>密码：</span><input type="text" id='loginPasswd'></p>
+			<p><input type="button" id='loginConfirm' value='确定'>
+			<input type="button" id='loginBack' value='返回'></p>
+		</div>
+	</aside>
+	<section class='divCenter'>
+		<div class='divFont'>
+			<p><span>用户名：</span><input type="text" id='registerIndex'></p>
+			<p><span>密码：</span><input type="text" id='registerPasswd'></p>
+			<p><span>重复密码：</span><input type="text" id='registerRePasswd'></p>
+			<p><span>联系电话：</span><input type="text" id='registerPhone'></p>
+			<p><span>邮箱：</span><input type="text" id='registerEmail'></p>
+			<p><input type="button" id='registerConfirm' value='确定'>
+			<input type="button" id='registerBack' value='返回'></p>
+		</div>
+	</section>
+</div>
+	<script type="text/javascript" src='js/index.js'></script>
+</body>
+</html>

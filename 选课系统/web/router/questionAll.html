@@ -1,0 +1,181 @@
+<div class='content' page='2'>
+	<h2 class='inblo'>题目筛选</h2>
+	<input type="text" id='key' placeholder='请输入关键字'>
+	<input type="button" id='keybut' value='查询'>
+	<hr></hr>
+	<table id='table2' cellspacing="0">
+		<tr id='type2'>
+			<td>题型</td>
+			<td class='both'>全部</td>
+			<td>单选题</td>
+			<td>多选题</td>
+			<td>简答题</td>
+			<td></td>
+		</tr>
+		<tr id='department2'>
+			<td>方向</td>
+			<td class='both'>全部</td>
+			<td>WebUI</td>
+			<td>Java</td>
+			<td>大数据</td>
+			<td>非IE</td>
+		</tr>
+		<tr id='point2'>
+			<td>知识点</td>
+			<td class='both'>全部</td>
+			<td>--</td>
+			<td>--</td>
+			<td>--</td>
+			<td>--</td>
+		</tr>
+		<tr id='difficult2'>
+			<td>难度</td>
+			<td class='both'>全部</td>
+			<td>容易</td>
+			<td>适中</td>
+			<td>困难</td>
+			<td>专家</td>
+		</tr>
+	</table>
+	<div id='qManager3'>
+		<table id='table3' class='table1' cellspacing="0">
+			<tr>
+				<th>id</th>
+				<th>题型</th>
+				<th>方向</th>
+				<th>知识点</th>
+				<th>难度</th>
+				<th>题干</th>
+				<th>选项</th>
+				<th>答案</th>
+				<th>分值</th>
+				<th>上传者</th>
+				<th>上传时间</th>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<script type="text/javascript">
+//隔行变色：
+	$('#table2').find('tr:even').css('background','skyblue');
+	$('#table2').find('tr:odd').css('background','grey');
+//点击td：
+	$('#table2 tr td').on('click',function(){
+	//清空点击带来的原有样式：
+		var tr = $(this).parent();
+		$(tr).find('td').removeAttr('class');
+	//为被点击的td添加样式：
+		$(this).attr('class','select');
+	});
+//默认点击全部：
+	$('#table2 tr td.both').trigger('click');
+//点击方向，知识点变化：
+	var arr2 = new Array();
+	arr2[0] = ['HTML','CSS','JS','Node'];
+	arr2[1] = ['j2EE','jdbc','jsp','xml'];
+	arr2[2] = ['linux','docker','kvm','mysql'];
+	arr2[3] = ['语文','英语','数学','物理'];
+	$('#department2 td').on('click',function(){
+	//	var t = $(this).text();
+		var j = $(this).index();
+		if(j>1){//添加对应的值
+			for(var i in arr2[j-2]){
+				var td = $('#point2 td').eq(+i+2);//i是字符串。
+				$(td).text(arr2[j-2][i]);
+			}
+		}else{//复原为--
+			for(var i=2;i<=$('#point2 td').length;i++){
+				var td = $('#point2 td').eq(i);
+				$(td).text('--');
+			}
+		}
+	});
+//获取所有数据：
+$(function(){
+	$.getJSON(bashpath+'/questions',function(data){
+		data.forEach(function(item){
+			var tr = '<tr>'
+			+'<td><input type="checkbox" value="'+item.id+'"></td>'
+			+'<td>'+item.type+'</td>'
+			+'<td>'+item.department+'</td>'
+			+'<td>'+item.point+'</td>'
+			+'<td>'+item.difficult+'</td>'
+			+'<td>'+item.stem+'</td>'
+			+'<td>'+item.option2+'</td>'
+			+'<td>'+item.answer+'</td>'
+			+'<td>'+item.value2+'</td>'
+			+'<td>'+item.super2+'</td>'
+			+'<td>'+item.time2+'</td>'
+			+'</tr>';
+			$('#table3 tbody').append(tr);
+		});
+	//td查询：
+		$('#table2 tr td').on('click',function(){
+			var tr2 = $(this).parent();
+			$(tr2).find('td').removeAttr('k');
+			$(this).attr('k','k');
+			var td1 = $('#type2').find('td[k="k"]');
+			var td2 = $('#department2').find('td[k="k"]');
+			var td3 = $('#point2').find('td[k="k"]');
+			var td4 = $('#difficult2').find('td[k="k"]');
+			var t1 = $(td1).text();
+			var t2 = $(td2).text();
+			var t3 = $(td3).text();
+			var t4 = $(td4).text();
+			t1=tt(t1);t2=tt(t2);t3=tt(t3);t4=tt(t4);
+			var str = '?type='+t1+'&department='+t2+'&point='+t3+'&difficult='+t4;
+			function tt(a){
+				if(a == ''||a == '题型'||a == '方向'||a == '知识点'||a == '难度'){//点击空白td、题型、方向、知识点、难度也是全部。第一次的时候，虽然有默认点击，写的全部，但其实获取的是空字符串。
+					return a = '全部';
+				}else{
+					return a;
+				}
+			}
+			$.getJSON(bashpath+'/questions/findByTdpd'+str,function(data3){
+				$('#table3 tbody').html('');
+				data3.forEach(function(item){
+					var tr = '<tr>'
+					+'<td><input type="checkbox" value="'+item.id+'"></td>'
+					+'<td>'+item.type+'</td>'
+					+'<td>'+item.department+'</td>'
+					+'<td>'+item.point+'</td>'
+					+'<td>'+item.difficult+'</td>'
+					+'<td>'+item.stem+'</td>'
+					+'<td>'+item.option2+'</td>'
+					+'<td>'+item.answer+'</td>'
+					+'<td>'+item.value2+'</td>'
+					+'<td>'+item.super2+'</td>'
+					+'<td>'+item.time2+'</td>'
+					+'</tr>';
+					$('#table3 tbody').append(tr);
+				});	
+			});
+		});
+	//关键字查询：
+		$('#keybut').on('click',function(){
+			var keys = $('#key').val();
+			$.getJSON(bashpath+'/questions/findByKeys?keys='+keys,function(data4){
+				$('#table3 tbody').html('');
+				data4.forEach(function(item){
+					var tr = '<tr>'
+					+'<td><input type="checkbox" value="'+item.id+'"></td>'
+					+'<td>'+item.type+'</td>'
+					+'<td>'+item.department+'</td>'
+					+'<td>'+item.point+'</td>'
+					+'<td>'+item.difficult+'</td>'
+					+'<td>'+item.stem+'</td>'
+					+'<td>'+item.option2+'</td>'
+					+'<td>'+item.answer+'</td>'
+					+'<td>'+item.value2+'</td>'
+					+'<td>'+item.super2+'</td>'
+					+'<td>'+item.time2+'</td>'
+					+'</tr>';
+					$('#table3 tbody').append(tr);
+				});	
+			});
+		});	
+	});
+});
+	
+</script>

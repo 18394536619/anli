@@ -1,0 +1,344 @@
+<div>
+	<h4>
+		<span id='questionAddOrUpdate'></span>
+		<img src="images/back.png" alt="" class='back1'>
+	</h4>
+	<hr></hr>
+	<div id='addContent'>
+		<select name="type" id="type" onchange='con();'>
+			<option value="">题型</option>
+			<option value="单选题">单选题</option>
+			<option value="多选题">多选题</option>
+			<option value="简答题">简答题</option>
+		</select>
+		<select name="department" id="department" onchange='poi();'>
+			<option value="">方向</option>
+		</select>
+		<select name="point" id="point">
+			<option value="">知识点</option>
+		</select>
+		<select name="difficult" id="difficult">
+			<option value="">难度</option>
+			<option value="容易">容易</option>
+			<option value="适中">适中</option>
+			<option value="困难">困难</option>
+			<option value="专家">专家</option>
+		</select>
+		<span>分值：</span><input type="text" id='score'>
+		<hr></hr>
+		<div id='radio'>
+			<span>题干：</span>
+			<textarea rows='3' cols='91' id='stem'></textarea><br>
+			<span>选项：</span><br>
+			<p>
+				<b>A</b><textarea rows='3' cols='40' class='opt' id='ra'></textarea>
+				<b>B</b><textarea rows='3' cols='40' class='opt' id='rb'></textarea>
+			</p>
+			<p>
+				<b>C</b><textarea rows='3' cols='40' class='opt' id='rc'></textarea>
+				<b>D</b><textarea rows='3' cols='40' class='opt' id='rd'></textarea>
+			<p>
+			<span>答案：</span>
+			<select name="answer" id="answer">
+				<option value="">答案</option>
+				<option value="A">A</option>
+				<option value="B">B</option>
+				<option value="C">C</option>
+				<option value="D">D</option>
+			</select>
+		</div>
+		<div id='checkbox'>
+			<span>题干：</span>
+			<textarea rows='3' cols='91' id='stem2'></textarea><br>
+			<span>选项：</span><br>
+			<p>
+				<b>A</b><textarea rows='3' cols='40' class='opt' id='ca'></textarea>
+				<b>B</b><textarea rows='3' cols='40' class='opt' id='cb'></textarea>
+			</p>
+			<p>
+				<b>C</b><textarea rows='3' cols='40' class='opt' id='cc'></textarea>
+				<b>D</b><textarea rows='3' cols='40' class='opt' id='cd'></textarea>
+			<p>
+			<p>
+				<b>E</b><textarea rows='3' cols='40' class='opt' id='ce'></textarea>
+				<b>F</b><textarea rows='3' cols='40' class='opt' id='cf'></textarea>
+			<p>
+			<span>答案：</span>
+			<select name="answer" id="answer21">
+				<option value="">答案</option>
+				<option value="A">A</option>
+				<option value="B">B</option>
+				<option value="C">C</option>
+				<option value="D">D</option>
+				<option value="E">E</option>
+				<option value="F">F</option>
+			</select>
+			<select name="answer" id="answer22">
+				<option value="">答案</option>
+				<option value="A">A</option>
+				<option value="B">B</option>
+				<option value="C">C</option>
+				<option value="D">D</option>
+				<option value="E">E</option>
+				<option value="F">F</option>
+			</select>
+			<select name="answer" id="answer23">
+				<option value="">答案</option>
+				<option value="A">A</option>
+				<option value="B">B</option>
+				<option value="C">C</option>
+				<option value="D">D</option>
+				<option value="E">E</option>
+				<option value="F">F</option>
+			</select>
+			<select name="answer" id="answer24">
+				<option value="">答案</option>
+				<option value="A">A</option>
+				<option value="B">B</option>
+				<option value="C">C</option>
+				<option value="D">D</option>
+				<option value="E">E</option>
+				<option value="F">F</option>
+			</select>
+			<select name="answer" id="answer25">
+				<option value="">答案</option>
+				<option value="A">A</option>
+				<option value="B">B</option>
+				<option value="C">C</option>
+				<option value="D">D</option>
+				<option value="E">E</option>
+				<option value="F">F</option>
+			</select>
+		</div>
+		<div id='text'>
+			<span>题干：</span>
+			<textarea rows='3' cols='91' id='stem3'></textarea><br>
+			<span>答案：</span>
+			<textarea rows='3' cols='91' id='answer3'></textarea>
+		</div>
+		<div id='foot'>
+			<input type="button" id='addConfirm' value='提交'>
+			<input type="button" id='addBack' value='返回'>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+//通过获取属性u的值来判断是点了增加还是修改按钮跳过来的：
+	var sign = false;
+	var p1 = $('#add1').attr('u');
+	var p2 = $('#update1').attr('u');
+	if(p1 == 'true' && p2 == 'false'){
+		sign = false;    //代表是点击增加按钮跳过来的。
+	}else if(p2 == 'true' && p1 == 'false'){
+		sign = true;     //代表是点击修改按钮跳过来的。
+	}
+	var ID;
+	if(sign == false){
+		$('#questionAddOrUpdate').text('题目添加');
+	}else if(sign == true){
+		$('#questionAddOrUpdate').text('题目修改');
+	}
+	
+//二级联动：	
+	var arr1 = ['WebUI','Java','大数据','非IE'];
+	var arr2 = new Array();
+	arr2[0] = ['HTML','CSS','JS','Node'];
+	arr2[1] = ['j2EE','jdbc','jsp','xml'];
+	arr2[2] = ['linux','docker','kvm','mysql'];
+	arr2[3] = ['语文','英语','数学','物理'];
+	for(var i in arr1){
+		let option = $('<option>');
+		$(option).text(arr1[i]);
+		$(option).val(arr1[i]);
+		$('#department').append(option);
+	}
+	function poi(){
+		$('#point').html('<option>知识点</option>');  //清空原来的内容，避免累加。
+		let j = $('#department option:selected').index();//获取一级联动（方向）中被点击选项的下标。
+		for(var i in arr2[j-1]){//因为arr2数组中省略了选项‘知识点’，故减一。
+			let option = $('<option>');
+			$(option).text(arr2[j-1][i]);
+			$(option).val(arr2[j-1][i]);
+			$('#point').append(option);
+		}
+	}
+//点击返回图标退回上一步：
+	$('.back1').on('click',function(){
+		$('#content').load('router/question.html');
+	});
+//点击返回按钮退回上一步：
+	$('#addBack').on('click',function(){
+		$('#content').load('router/question.html');
+	});
+//随着题型下拉框的变化，题目添加区域发生变化：
+	function con(){
+		let i = $('#type option:selected').index();
+		$('#foot').css('display','block');
+		sw(i);
+	}
+	function sw(i){
+		switch(i){
+			case 0:ch('#foot','#foot');break;
+			case 1:ch('#radio');break;
+			case 2:ch('#checkbox');break;
+			case 3:ch('#text');break;
+		}
+	}
+	function ch(b,c){
+		$('#radio').css('display','none');
+		$('#checkbox').css('display','none');
+		$('#text').css('display','none');
+		$(b).css('display','block');
+		$(c).css('display','none');
+	}
+//单个修改第(2)部分：
+	if(sign == true){
+	//update:
+		var id = $('#update1').attr('v');
+		ID = id;
+		$.getJSON(bashpath+'/questions/findById?id='+id,function(data2){
+			data2.forEach(function(i){
+			//如何显示题框：
+				$('#type').val(i.type);
+				$('#type').trigger('change');
+			//	$('#type').css('disabled',true);//应该不让用户修改。
+			//二级联动如何显示数据：
+				$('#department').val(i.department);
+				$('#department').trigger('change');
+				$('#point').val(i.point);
+				$('#difficult').val(i.difficult);
+				$('#score').val(i.value2);
+				if(i.type=='单选题'){
+					$('#stem').val(i.stem);
+					$('#answer').val(i.answer);
+					let o = i.option2.split('@');
+					let a = o[0],b = o[1],c = o[2],d = o[3];
+					$('#ra').val(a);
+					$('#rb').val(b);
+					$('#rc').val(c);
+					$('#rd').val(d);
+				}else if(i.type=='多选题'){
+					$('#stem2').val(i.stem);
+					let o2 = i.answer.split('@');
+					$('#answer21').val(o2[0]);
+					$('#answer22').val(o2[1]);
+					$('#answer23').val(o2[2]);
+					$('#answer24').val(o2[3]);
+					$('#answer25').val(o2[4]);
+			//如果用户点击的是一样的选项（答案有重复），该怎么处理？
+					let o = i.option2.split('@');
+					let a = o[0],b = o[1],c = o[2],d = o[3],e = o[4],f = o[5];
+					$('#ca').val(a);
+					$('#cb').val(b);
+					$('#cc').val(c);
+					$('#cd').val(d);
+					$('#ce').val(e);
+					$('#cf').val(f);
+				}else if(i.type=='简答题'){
+					$('#stem3').val(i.stem);
+					$('#answer3').val(i.answer);
+				}
+			});
+		});
+	}
+//提交数据：
+	$('#addConfirm').on('click',function(){
+	//获取（共用）:
+		let type = $('#type').val();
+		let department = $('#department').val();
+		let point = $('#point').val();
+		let difficult = $('#difficult').val();
+		let score = $('#score').val();
+		let stem,a,b,c,d,e,f,as1,as2,as3,as4,as5,answer,option;
+		if(type=='单选题'){
+			stem = $('#stem').val();
+			answer = $('#answer').val();
+			a = $('#ra').val(); //输入#数据就进不去了。
+			b = $('#rb').val();
+			c = $('#rc').val();
+			d = $('#rd').val();
+			option = a+'@'+b+'@'+c+'@'+d;
+		}else if(type=='多选题'){
+			stem = $('#stem2').val();
+			as1 = $('#answer21').val();
+			as2 = $('#answer22').val();
+			as3 = $('#answer23').val();
+			as4 = $('#answer24').val();
+			as5 = $('#answer25').val();
+			a = $('#ca').val();
+			b = $('#cb').val();
+			c = $('#cc').val();
+			d = $('#cd').val();
+			e = $('#ce').val();
+			f = $('#cf').val();
+			option = a+'@'+b+'@'+c+'@'+d+'@'+e+'@'+f;
+			answer = as1+'@'+as2+'@'+as3+'@'+as4+'@'+as5;
+		}else if(type=='简答题'){
+			stem = $('#stem3').val();
+			answer = $('#answer3').val();
+			option = '无';
+		}
+		let super2 = user;//super为关键字/保留字，不能作为变量名。
+		let date = new Date();
+		let time = date.toLocaleString();
+		/*let da = date.toLocaleDateString();
+		let t = date.toLocaleTimeString();
+		let time = da+t;//修改后时间也会变。*/
+		var flag = 0;
+		flag = 1;
+	//	flag = query();
+		var data = "?type="+type+"&department="+department+"&point="+point+"&difficult="+difficult+"&value2="+score+"&stem="+stem+"&option2="+option+"&answer="+answer+"&super2="+super2+"&time2="+time;
+		if(flag == 1){
+			if(sign == true){    //修改：
+				var id = ID;
+				$.getJSON(bashpath+'/questions/updates'+data+'&id='+id,function(){
+					alert('修改成功！');
+					$('#addBack').trigger('click');
+				});	
+			}else if(sign == false){//增加：
+				$.getJSON(bashpath+'/questions/adds'+data,function(){//bashpath可以不写。
+					alert('添加成功！');
+					$('#addBack').trigger('click');
+				});
+			}
+		}
+	});
+
+
+//输入题目为空的异常处理：
+	function query(){
+			if(department==''){
+				alert('请选择方向！');
+			}else{
+				if(point==''||point=='知识点'){
+					alert('请选择知识点！');
+				}else{
+					if(difficult==''){
+						alert('请选择难度！');
+					}else{
+						if(score==''){
+							alert('请输入分值！');
+						}else{
+							if(stem==''){
+								alert('请输入题干！');
+							}
+							else{
+								if(answer==''){
+									alert('请输入答案！');
+								}else{
+									if(a==''||b==''||c==''||d==''){
+										alert('请输入选项！');
+									}else{
+										var flag = 1;
+										return flag;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+</script>

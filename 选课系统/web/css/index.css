@@ -1,0 +1,69 @@
+header{
+	height:70px;
+	background:url('../images/top.png') no-repeat;
+	background-size:cover;
+	position:relative;
+}
+header .img1{
+	position:absolute;
+	left:20px;top:5px;
+}
+header .div1{
+	float:right;
+	margin-right:20px;
+	margin-top:16px;
+	font-size:20px;
+	cursor:pointer;
+	color:black;
+}
+header .div1 span{
+	margin-right:10px;
+	margin-left:16px;
+	display:inline-block;
+	width:50px;
+}
+header .div1 span:hover{
+	color:white;
+	background:green;
+	text-align:center;
+	border-radius:2px;
+}
+article{
+	height:588px;
+}
+
+#modal aside{
+	width:400px;
+	height:220px;
+}
+#modal section{
+	width:400px;
+	height:420px;
+}
+.divCenter{
+	position:absolute;
+	left:0;right:0;top:0;bottom:0;
+	margin:auto;
+	display:none;
+}
+.divFont{
+	font-size:20px;
+ 	padding:40px 40px; 
+}
+.divCenter div p{
+	margin-bottom:20px;
+}
+.divCenter div span{
+	display:inline-block;
+	width:100px;
+}
+.divCenter div input[type='text']{
+	font-size:20px;
+}
+.divCenter div input[type='button']{
+	font-size:20px;
+	cursor:pointer;
+	margin-left:40px;
+	width:100px;
+}
+

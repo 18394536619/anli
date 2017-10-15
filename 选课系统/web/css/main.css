@@ -1,0 +1,88 @@
+header{
+	height:70px;
+	background:url('../images/top.png') no-repeat;
+	background-size:cover;
+	position:relative;
+}
+header .img1{
+	position:absolute;
+	left:20px;top:5px;
+}
+header #user{
+	margin-left:600px;
+	margin-top:18px;
+	font-size:20px;
+	cursor:default;   /*箭头样式*/
+}
+header .div1{
+	float:right;
+	margin-right:20px;
+	margin-top:16px;
+	font-size:20px;
+	cursor:pointer;
+	color:black;
+}
+header .div1 span{
+	margin-right:10px;
+	margin-left:26px;
+	display:inline-block;
+	width:100px;
+}
+header .div1 span:hover{
+	color:white;
+	background:green;
+	text-align:center;
+	border-radius:2px;
+}
+article{
+	height:588px;
+}
+article aside{
+	float:left;
+	width:220px;
+	height:588px;
+	background:url('../images/left.png');
+	background-size:220px 588px; 
+}
+article section{
+	float:right;
+	width:990px;
+	background:white;
+}
+article section div{
+	margin-left:10px;
+	height:588px;
+}
+article aside ul{
+	margin-top:10px;
+}
+article aside ul li{
+	height:40px;
+	background:url('../images/btn3.png') no-repeat;
+	background-size:180px 40px;
+	text-align:center;
+	line-height:40px;
+	font-size:22px;
+	color:green;
+	margin-top:5px;
+	margin-left:20px;
+	cursor:pointer;
+}
+article aside ul li:hover{
+	color:white;
+}
+article aside ul li.mainLeftn{
+	display:none;
+}
+article aside ul li:first-child{
+	height:50px;
+	line-height:50px;
+	background:url('../images/btn1.png') no-repeat;
+	background-size:200px 50px;
+	margin-left:10px;
+	color:white;
+}
+article aside ul li:first-child:hover{
+	background:url('../images/btn2.png') no-repeat;
+	background-size:200px 50px;
+}
