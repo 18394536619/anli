@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+}
+article{
+    background-color: gray;
+}
+div.one{
+background-color: red;
+margin-bottom: 10px;
+}
+div.two{
+    background-color: blue;
+    margin-top: 10px;
+}
+/*兄弟元素之间产生的外边距合并：1.取外边距的最大值
+2.如果当有负数值时，直接进行加减。
+3.当两个值均为负数值时，先去绝对值，用0减去绝对值大的。
+*/
+</style>
+</head>
+<body>
+    <article>
+        <div class="one"></div>
+        <div class="two"></div>
+    </article>
+</body>
+</html>

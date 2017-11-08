@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>变形</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            margin: 50px;
+            animation-name: move;
+            animation-duration: 5s;
+}
+ div:hover{
+   transform: rotateZ(75deg);
+     transform: skewY(45deg); 
+    /* 元素的倾斜角度，如：30deg, */
+     transform: translateX(100px); 
+     transform: rotate(45deg); 
+     transform-origin: 20% 20%; 
+    /* 移动元素 X，Y,Z */
+        
+
+/* @keyframes move{
+    0%{
+        transform: rotate(60deg);/*元素旋转角度
+        background-color: blueviolet;
+
+    }
+    50%{
+        margin-left: 300px;
+        transform: skewX(30deg);
+        background-color: blue;
+    }
+    100%{
+        margin-left: 600px;
+        transform: scale(2);/*元素的缩放倍数
+        background-color: red;
+    } 
+    */
+}</style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

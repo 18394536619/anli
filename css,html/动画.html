@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            animation-name: move;/*动画名称,几个同时运行时，用逗号隔开*/
+            animation-duration: 3s;/*动画持续时间，默认值为0*/
+            animation-iteration-count: infinite;/*动画的循环次数，infinite表示无限重复*/
+            /*animation-delay: 3s;当前动画延迟时间，默认为0*/
+            animation-direction: alternate-reverse;/*动画运行完是否交替方向，normal 不交替，reverse表示反转，alternate动画的起点交替展示*/
+            animation-play-state: running;/*暂停或运行，paused表示暂停，running表示运行*/
+            animation-fill-mode: both;/*none, both，forwards,backwards定义当前动画是否将动画应用到元素上*/
+            animation-timing-function: ease-in;}/*设置动画的变换速度，ease:默认值：先快后慢，在结束之前；ease-in先慢后快，ease-out以慢速结束；ease-in-out以慢速开始，慢速结束；linear匀速*/
+@keyframes move{
+    0%{
+        margin-left: 0px;
+        background-color: blueviolet;
+
+    }
+    30%{
+        margin-left: 150px;
+        background-color: gold;}
+    50%{
+        margin-left: 150px;
+        background-color: red;
+    }
+    100%{
+        width: 200px;
+        margin-left: 300px;
+        background-color: green;
+    }
+}
+/*@keyframes move1{
+        from{
+            margin-top: 0px;
+        }
+        to{
+            margin-top: 300px;
+        }
+    }*/
+    p.one{
+        background-color: royalblue;
+        width: 100px;
+        height: 100px;
+        animation-name: move;
+        animation-duration: 3s;
+        animation-timing-function: ease-in;
+    }
+    p.two{
+         background-color:fuchsia;
+        width: 100px;
+        height: 100px;
+        animation-name: move;
+        animation-duration: 3s;
+        animation-timing-function: ease-out;
+    }
+    p.three{
+        background-color: greenyellow;
+        width: 100px;
+        height: 100px;
+        animation-name: move;
+        animation-duration: 3s;
+        animation-timing-function: cubic-bezier(0,0.5,0.5,0.8);
+
+    }
+</style>
+</head>
+<body>
+    <div>
+        <p class="one"></p>
+        <p class="two"></p>
+        <p class="three"></p>
+    </div>
+</body>
+</html>

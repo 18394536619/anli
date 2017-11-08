@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>多行居中</title>
+    <style type="text/css">
+        #outer{
+            width: 400px;
+            height: 400px;
+            background-color: GREEN; 
+            position: relative;
+            /*浮动，定位将行内元素变成块级元素*/
+        }
+        span{
+            /*高为宽16px的1.5倍  */
+            height: 48px;
+            text-align: center; 
+            position: absolute;
+            left: 0;top: 0;right: 0;bottom: 0;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="outer">
+        <span>
+            您好
+            <br>
+            hello
+        </span>
+        
+    </div>
+</body>
+</html>

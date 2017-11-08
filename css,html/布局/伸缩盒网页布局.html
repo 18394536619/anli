@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>flex</title>
+    <style>
+        .outer{
+            width: 600px;
+             background-color: #ccc; 
+             /* overflow: hidden;  */
+            display: flex;/*使用会使每一个项目的float,clear失效*/
+            flex-direction: row-reverse;/*属性有colum row row-reverse从右向左排列 colum-reverse从下到上排列*/
+            flex-wrap: nowrap;/*表示换行，如属性是nowrap时表示不换行，wrop表示换行*/    
+            justify-content:center;/*flex-start表示从头开始；flex-end表示从尾开始；center表示居中显示*/   }
+        .outer div{
+    width: 178px;
+    height: 100px;
+    background-color: orange;
+    margin-left: 5px;
+    border: 1px solid red;
+    
+}</style>
+</head>
+<body>
+    <div class="outer">
+        <div class="one">1</div>
+        <div class="two">2</div>
+        <div class="three">3</div>
+    </div>
+</body>
+</html>
